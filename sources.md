@@ -1,0 +1,2 @@
+- https://ankitmaheshwariin.medium.com/create-a-single-page-website-using-node-js-and-express-js-a0b53e396e4f 
+- https://www.oracle.com/database/technologies/appdev/quickstartnodejs.html
