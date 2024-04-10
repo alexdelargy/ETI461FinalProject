@@ -1,5 +1,4 @@
-
-CREATE TABLE LAB8Movies   (
+CREATE TABLE Movies   (
     MovieID   int PRIMARY KEY,
     MovieName   varchar(255),
     Director   varchar(255),
@@ -10,7 +9,7 @@ CREATE TABLE LAB8Movies   (
     Genre   varchar(255)
 );
 
-CREATE TABLE LAB8UserWatchHistory   (
+CREATE TABLE UserWatchHistory   (
     MovieID   int,
     UserID   int,
     UserRating   int,
@@ -19,14 +18,14 @@ CREATE TABLE LAB8UserWatchHistory   (
   PRIMARY KEY (  MovieID  ,   UserID  )
 );
 
-CREATE TABLE   LAB8MovieActor   (
+CREATE TABLE MovieActor   (
     ActorID   int,
     MovieID   int,
     "Role"   varchar(255),
   PRIMARY KEY (  ActorID  ,   MovieID  )
 );
 
-CREATE TABLE   LAB8Actors   (
+CREATE TABLE Actors   (
     ActorID   int PRIMARY KEY,
     Bio   varchar(255),
     Fname   varchar(255),
@@ -35,7 +34,7 @@ CREATE TABLE   LAB8Actors   (
     DOB   date
 );
 
-CREATE TABLE LAB8Users   (
+CREATE TABLE Users   (
     UserID   int PRIMARY KEY,
     Fname   varchar(255),
     Lname   varchar(255),
@@ -46,7 +45,7 @@ CREATE TABLE LAB8Users   (
     AddressID   int 
 );
 
-CREATE TABLE   LAB8UserAddress   (
+CREATE TABLE UserAddress   (
     AddressID   int PRIMARY KEY,
     AddressLine1   varchar(255),
     AddressLine2   varchar(255),
@@ -55,7 +54,7 @@ CREATE TABLE   LAB8UserAddress   (
     ZipCode   int
 );
 
-CREATE TABLE   LAB8Subscription   (
+CREATE TABLE Subscription   (
     SubscriptionID   int PRIMARY KEY,
     SubscriptionType   varchar(255),
     RenewalDate   date,
