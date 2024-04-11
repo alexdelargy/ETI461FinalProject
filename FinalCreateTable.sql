@@ -1,3 +1,42 @@
+DECLARE
+   l_count NUMBER;
+BEGIN
+   SELECT COUNT(*) INTO l_count FROM user_tables WHERE table_name = 'MOVIEACTOR';
+   IF l_count > 0 THEN
+      EXECUTE IMMEDIATE 'DROP TABLE MOVIEACTOR';
+   END IF;
+   SELECT COUNT(*) INTO l_count FROM user_tables WHERE table_name = 'USERWATCHHISTORY';
+   IF l_count > 0 THEN
+      EXECUTE IMMEDIATE 'DROP TABLE USERWATCHHISTORY';
+   END IF;
+   SELECT COUNT(*) INTO l_count FROM user_tables WHERE table_name = 'USERADDRESS';
+   IF l_count > 0 THEN
+      EXECUTE IMMEDIATE 'DROP TABLE USERADDRESS';
+   END IF;
+   SELECT COUNT(*) INTO l_count FROM user_tables WHERE table_name = 'MOVIEACTOR';
+   IF l_count > 0 THEN
+      EXECUTE IMMEDIATE 'DROP TABLE MOVIEACTOR';
+   END IF;
+   SELECT COUNT(*) INTO l_count FROM user_tables WHERE table_name = 'MOVIES';
+   IF l_count > 0 THEN
+      EXECUTE IMMEDIATE 'DROP TABLE MOVIES';
+   END IF;
+   SELECT COUNT(*) INTO l_count FROM user_tables WHERE table_name = 'ACTORS';
+   IF l_count > 0 THEN
+      EXECUTE IMMEDIATE 'DROP TABLE ACTORS';
+   END IF;
+   SELECT COUNT(*) INTO l_count FROM user_tables WHERE table_name = 'USERS';
+   IF l_count > 0 THEN
+      EXECUTE IMMEDIATE 'DROP TABLE USERS';
+   END IF;
+   SELECT COUNT(*) INTO l_count FROM user_tables WHERE table_name = 'UserSubscription';
+   IF l_count > 0 THEN
+      EXECUTE IMMEDIATE 'DROP TABLE UserSubscription';
+   END IF;
+END;
+
+/
+
 CREATE TABLE Movies   (
     MovieID   int PRIMARY KEY,
     MovieName   varchar(255),
@@ -9,6 +48,8 @@ CREATE TABLE Movies   (
     Genre   varchar(255)
 );
 
+/
+
 CREATE TABLE UserWatchHistory   (
     MovieID   int,
     UserID   int,
@@ -18,12 +59,16 @@ CREATE TABLE UserWatchHistory   (
   PRIMARY KEY (  MovieID  ,   UserID  )
 );
 
+/
+
 CREATE TABLE MovieActor   (
     ActorID   int,
     MovieID   int,
     "Role"   varchar(255),
   PRIMARY KEY (  ActorID  ,   MovieID  )
 );
+
+/
 
 CREATE TABLE Actors   (
     ActorID   int PRIMARY KEY,
@@ -34,6 +79,8 @@ CREATE TABLE Actors   (
     DOB   date
 );
 
+/
+
 CREATE TABLE Users   (
     UserID   int PRIMARY KEY,
     Fname   varchar(255),
@@ -41,12 +88,14 @@ CREATE TABLE Users   (
     Email   varchar(255),
     DOB   date,
     HomeIP   int,
-    SubscriptionID   int,
-    AddressID   int 
+    SubscriptionID int
 );
+
+/
 
 CREATE TABLE UserAddress   (
     AddressID   int PRIMARY KEY,
+    UserID int,
     AddressLine1   varchar(255),
     AddressLine2   varchar(255),
     City   varchar(255),
@@ -54,23 +103,39 @@ CREATE TABLE UserAddress   (
     ZipCode   int
 );
 
-CREATE TABLE Subscription   (
+/
+
+CREATE TABLE UserSubscription   (
     SubscriptionID   int PRIMARY KEY,
     SubscriptionType   varchar(255),
     RenewalDate   date,
     Balance   int
 );
 
-ALTER TABLE   LAB8Users   ADD FOREIGN KEY (  SubscriptionID  ) REFERENCES   LAB8Subscription   (  SubscriptionID  );
+/
 
-ALTER TABLE   LAB8UserWatchHistory   ADD FOREIGN KEY (  MovieID  ) REFERENCES   LAB8Movies   (  MovieID  );
+ALTER TABLE   Users   ADD FOREIGN KEY (  SubscriptionID  ) REFERENCES   UserSubscription   (  SubscriptionID  );
 
-ALTER TABLE   LAB8UserWatchHistory   ADD FOREIGN KEY (  UserID  ) REFERENCES   LAB8Users   (  UserID  );
+/
 
-ALTER TABLE   LAB8MovieActor   ADD FOREIGN KEY (  MovieID  ) REFERENCES   LAB8Movies   (  MovieID  );
+ALTER TABLE   UserWatchHistory   ADD FOREIGN KEY (  MovieID  ) REFERENCES   Movies   (  MovieID  );
 
-ALTER TABLE   LAB8MovieActor   ADD FOREIGN KEY (  ActorID  ) REFERENCES   LAB8Actors  (  ActorID  );
+/
 
-ALTER TABLE   LAB8Users ADD FOREIGN KEY (  AddressID  ) REFERENCES   LAB8UserAddress   (  AddressID  );
+ALTER TABLE   UserWatchHistory   ADD FOREIGN KEY (  UserID  ) REFERENCES  Users   (  UserID  );
+
+/
+
+ALTER TABLE   MovieActor   ADD FOREIGN KEY (  MovieID  ) REFERENCES   Movies   (  MovieID  );
+
+/
+
+ALTER TABLE   MovieActor   ADD FOREIGN KEY (  ActorID  ) REFERENCES   Actors  (  ActorID  );
+
+/
+
+ALTER TABLE   UserAddress ADD FOREIGN KEY (  UserID  ) REFERENCES   Users   (  UserID  );
 
 
+    
+    
