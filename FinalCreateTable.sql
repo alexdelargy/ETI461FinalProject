@@ -112,6 +112,12 @@ CREATE TABLE UserSubscription   (
     Balance   int
 );
 
+CREATE TABLE UserSignIn (
+   UserID int not null PRIMARY KEY,
+   username nvarchar(50),
+   passwordHash nvacrhar(50)
+);
+
 /
 
 ALTER TABLE   Users   ADD FOREIGN KEY (  SubscriptionID  ) REFERENCES   UserSubscription   (  SubscriptionID  );
@@ -137,5 +143,5 @@ ALTER TABLE   MovieActor   ADD FOREIGN KEY (  ActorID  ) REFERENCES   Actors  ( 
 ALTER TABLE   UserAddress ADD FOREIGN KEY (  UserID  ) REFERENCES   Users   (  UserID  );
 
 
-    
+ALTER TABLE UserSignIn ADD FOREIGN KEY ( UserID ) REFERENCES Users (UserID);
     
