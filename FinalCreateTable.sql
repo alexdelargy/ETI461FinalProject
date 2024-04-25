@@ -46,7 +46,9 @@ CREATE TABLE Movies   (
     AverageRating   int,
     Runtime   int,
     ReleaseDate   date,
-    Genre   varchar(255)
+    Genre   varchar(255),
+    MovieFile varchar(200),
+    ImageFile varchar(200)
 );
 
 /

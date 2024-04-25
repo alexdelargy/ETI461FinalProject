@@ -18,7 +18,10 @@
                     type: 'GET',
                     success: function(movies) {
                         movies.forEach(movie => {
+
                             $('#movies-list').append(`<li>${movie.MOVIENAME}</li>`); // Adjust according to your data structure
+                            
+                            <a href="boho.html"><img src="images/movies/bohemian-rhapsody-web.jpg" alt="Photo 5" class="photo-home"></a>
                         });
                     },
                     error: function() {
@@ -69,6 +72,7 @@
 <div class="gallery-section-home">
     <h1 class="gallery-header-home">MOVIES</h1>
     <div class="gallery-home">
+
         <a href="boho.html"><img src="images/movies/bohemian-rhapsody-web.jpg" alt="Photo 5" class="photo-home"></a>
         <a href="jaws.html"><img src="images/movies/jaws.avif" alt="Photo 4" class="photo-home"></a>
         <a href="asteroidcity.html"><img src="images/movies/asteroid_city.webp" alt="Photo 5" class="photo-home"></a>

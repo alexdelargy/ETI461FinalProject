@@ -1,6 +1,7 @@
 const http = require('http');
 const express = require('express');
 const path = require('path');
+const oracledb = require('oracledb');
 const app = express();
 const PORT = 3000;
 
@@ -8,7 +9,6 @@ const dbConfig = {user: "ADMIN", password: "cevbet-fejxAd-fajvi6", connectionStr
 
 app.use(express.json());
 app.use(express.static("express"));
-// default URL for website
 
 app.get('/api/movies', async (req, res) => {
   let connection;
@@ -25,8 +25,6 @@ app.get('/api/movies', async (req, res) => {
             RUNTIME: row[5],
             RELEASEDATE: row[6],
             GENRE: row[7]
-
-            // Add other movie fields here
         };
       }));
   } catch (err) {
