@@ -2,14 +2,48 @@ const http = require('http');
 const express = require('express');
 const path = require('path');
 const app = express();
+const PORT = 3000;
+
+const dbConfig = {user: "ADMIN", password: "cevbet-fejxAd-fajvi6", connectionString: "(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=adb.us-ashburn-1.oraclecloud.com))(connect_data=(service_name=g3072397aa48eb9_yt1zdf20cec0f0k6_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))" };
+
 app.use(express.json());
 app.use(express.static("express"));
 // default URL for website
-app.use('/', function(req,res){
-    res.sendFile(path.join(__dirname+'/express/index.html'));
-    //__dirname : It will resolve to your project folder.
-  });
-const server = http.createServer(app);
-const port = 3000;
-server.listen(port);
-console.debug('Server listening on port ' + port);
+
+app.get('/api/movies', async (req, res) => {
+  let connection;
+  try {
+      connection = await oracledb.getConnection(dbConfig);
+      const result = await connection.execute(`SELECT * FROM Movies`); // Adjust SQL as needed
+      res.json(result.rows.map(row => {
+        return {
+            MOVIEID: row[0],
+            MOVIENAME: row[1],
+            DIRECTOR: row[2],
+            Description: row[3],
+            AVERAGERATING: row[4],
+            RUNTIME: row[5],
+            RELEASEDATE: row[6],
+            GENRE: row[7]
+
+            // Add other movie fields here
+        };
+      }));
+  } catch (err) {
+      console.error(err);
+      res.status(500).send('Error fetching movies from Oracle DB');
+  } finally {
+      if (connection) {
+          try {
+              connection.close();
+          } catch (err) {
+              console.error(err);
+          }
+      }
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+
