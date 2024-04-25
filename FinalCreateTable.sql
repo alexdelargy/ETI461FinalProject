@@ -1,3 +1,4 @@
+
 DECLARE
    l_count NUMBER;
 BEGIN
@@ -105,8 +106,8 @@ CREATE TABLE UserAddress   (
 
 /
 
-CREATE TABLE UserSubscription   (
-    SubscriptionID   int PRIMARY KEY,
+CREATE TABLE UserSubscriptions   (
+    SubscriptionID  int not null PRIMARY KEY,
     SubscriptionType   varchar(255),
     RenewalDate   date,
     Balance   int
@@ -114,13 +115,13 @@ CREATE TABLE UserSubscription   (
 
 CREATE TABLE UserSignIn (
    UserID int not null PRIMARY KEY,
-   username nvarchar(50),
-   passwordHash nvacrhar(50)
+   username varchar(50),
+   passwordHash varchar(50)
 );
 
 /
 
-ALTER TABLE   Users   ADD FOREIGN KEY (  SubscriptionID  ) REFERENCES   UserSubscription   (  SubscriptionID  );
+ALTER TABLE   Users   ADD FOREIGN KEY (  SubscriptionID  ) REFERENCES   UserSubscriptions   (  SubscriptionID  );
 
 /
 
