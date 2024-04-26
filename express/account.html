@@ -41,5 +41,56 @@
         </nav>
     </header>
 
+<style>
+
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .grid-item {
+        background-color: #f4f4f4;
+        border: 1px solid #ccc;
+        padding: 15px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .grid-item h2 {
+        color: #333;
+        font-size: 1.5em;
+    }
+
+    .grid-item p {
+        font-size: 1em;
+        color: #666;
+    }
+
+</style>
+
+    <div class="grid-container">
+        <div class="grid-item">
+            <h2>Upcoming Charges</h2>
+            <p>$2.11 due 05/05/2024</p>
+            <p><u>Change Payment Method</u></p>
+        </div>
+        <div class="grid-item">
+            <h2>Your Subscription</h2>
+            <p>Lulu Base Plan (With Ads)</p>
+            <p><u>Upgrade my Plan</u></p>
+        </div>
+        <div class="grid-item">
+            <h2>Your Account</h2>
+            <p><u>Change Username</u></p>
+            <p><u>Change Password</u></p>
+        </div>
+    </div>
+</body>
+
 </body>
 </html>
