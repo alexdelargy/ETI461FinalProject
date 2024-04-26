@@ -10,6 +10,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Final Project: Lulu</title>
         <link rel="stylesheet" href="styles.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $.ajax({
+                    url: '/api/movies',
+                    type: 'GET',
+                    success: function(movies) {
+                        movies.forEach(movie => {
+                            if (movie.MOVIEID == 2) {
+                                $('.info-title').append(`
+                                    <div class="info-text">
+                                        <p><strong>Title:</strong> ${movie.MOVIENAME}</p>
+                                        <p><strong>Description:</strong> ${movie.DESCRIPTION}</p>
+                                        <p><strong>Runtime:</strong> ${movie.RUNTIME} minutes</p>
+                                        <p><strong>Genre:</strong> ${movie.GENRE}</p>
+                                        <p><strong>Director:</strong> ${movie.DIRECTOR}</p>
+                                    </div>`);
+                            }
+                        });
+                    },
+                    error: function() {
+                        $('.info-container').append('<p>Error loading movies.</p>');
+                    }
+                });
+            });
+            </script>
     </head>
 
 <!-- BODY -->
@@ -75,22 +102,10 @@
     <!-- Info -->
     <div class="info-container">
         <img src="images/movies/asteroid_city.webp" alt="Example Image" class="info-image">
+            <h2 class="info-title">Asteroid City</h2>
+
     </div>
 
-    <div class="new-container"></div>
-            <h1>Asteroid City</h1>
-            <hr>
-            <h2>Description</h2>
-            <p>Following a writer on his world famous fictional play about a grieving father who travels with his tech-obsessed family to small rural Asteroid City to compete in a junior stargazing event, only to have his world view disrupted forever.</p>
-            <hr>
-            <h2>RunTime</h2>
-            <p>1h 45min</p>
-            <hr>
-            <h2>Genre</h2>
-            <p>Comedy, Drama, Romance</p>
-            <hr>
-            <h2>Director</h2>
-            <p>Wes Anderson</p>
-    </div>
+  
 
 </body>

@@ -9,7 +9,34 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Final Project: Lulu</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         <link rel="stylesheet" href="styles.css">
+        <script>
+            $(document).ready(function() {
+                $.ajax({
+                    url: '/api/movies',
+                    type: 'GET',
+                    success: function(movies) {
+                        movies.forEach(movie => {
+                            if (movie.MOVIEID == 5) {
+                                $('.info-title').append(`
+                                    <div class="info-text">
+                                        <p><strong>Title:</strong> ${movie.MOVIENAME}</p>
+                                        <p><strong>Description:</strong> ${movie.DESCRIPTION}</p>
+                                        <p><strong>Runtime:</strong> ${movie.RUNTIME} minutes</p>
+                                        <p><strong>Genre:</strong> ${movie.GENRE}</p>
+                                        <p><strong>Director:</strong> ${movie.DIRECTOR}</p>
+                                    </div>`);
+                            }
+                        });
+                    },
+                    error: function() {
+                        $('.info-container').append('<p>Error loading movies.</p>');
+                    }
+                });
+            });
+            </script>
     </head>
 
 <!-- BODY -->
@@ -77,15 +104,6 @@
 <div class="info-container">
     <img src="images/movies/black_swan.jpg" alt="Example Image" class="info-image">
         <h2 class="info-title">Black Swan</h2>
-        <p class="info-text">
-            Title: Black Swan
-            Description: Nina is a talented but unstable ballerina on the verge of stardom. 
-            Pushed to the breaking point by her artistic director and a seductive rival, Nina's grip on reality slips, 
-            plunging her into a waking nightmare.
-            RunTime: 1h 48min
-            Genre: Drama, Thriller
-            Director: Darren Aronofsky
-        </p>
     </div>
 
 </body>
