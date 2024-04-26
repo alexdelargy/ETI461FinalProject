@@ -36,7 +36,7 @@ BEGIN
    END IF;
 END;
 
-/
+
 
 CREATE TABLE Movies   (
     MovieID   int PRIMARY KEY,
@@ -51,7 +51,7 @@ CREATE TABLE Movies   (
     ImageFile varchar(200)
 );
 
-/
+
 
 CREATE TABLE UserWatchHistory   (
     MovieID   int,
@@ -62,7 +62,7 @@ CREATE TABLE UserWatchHistory   (
   PRIMARY KEY (  MovieID  ,   UserID  )
 );
 
-/
+
 
 CREATE TABLE MovieActor   (
     ActorID   int,
@@ -71,7 +71,7 @@ CREATE TABLE MovieActor   (
   PRIMARY KEY (  ActorID  ,   MovieID  )
 );
 
-/
+
 
 CREATE TABLE Actors   (
     ActorID   int PRIMARY KEY,
@@ -82,7 +82,7 @@ CREATE TABLE Actors   (
     DOB   date
 );
 
-/
+
 
 CREATE TABLE Users   (
     UserID   int PRIMARY KEY,
@@ -94,7 +94,7 @@ CREATE TABLE Users   (
     SubscriptionID int
 );
 
-/
+
 
 CREATE TABLE UserAddress   (
     AddressID   int PRIMARY KEY,
@@ -106,7 +106,7 @@ CREATE TABLE UserAddress   (
     ZipCode   int
 );
 
-/
+
 
 CREATE TABLE UserSubscriptions   (
     SubscriptionID  int not null PRIMARY KEY,
@@ -125,23 +125,23 @@ CREATE TABLE UserSignIn (
 
 ALTER TABLE   Users   ADD FOREIGN KEY (  SubscriptionID  ) REFERENCES   UserSubscriptions   (  SubscriptionID  );
 
-/
+
 
 ALTER TABLE   UserWatchHistory   ADD FOREIGN KEY (  MovieID  ) REFERENCES   Movies   (  MovieID  );
 
-/
+
 
 ALTER TABLE   UserWatchHistory   ADD FOREIGN KEY (  UserID  ) REFERENCES  Users   (  UserID  );
 
-/
+
 
 ALTER TABLE   MovieActor   ADD FOREIGN KEY (  MovieID  ) REFERENCES   Movies   (  MovieID  );
 
-/
+
 
 ALTER TABLE   MovieActor   ADD FOREIGN KEY (  ActorID  ) REFERENCES   Actors  (  ActorID  );
 
-/
+
 
 ALTER TABLE   UserAddress ADD FOREIGN KEY (  UserID  ) REFERENCES   Users   (  UserID  );
 

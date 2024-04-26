@@ -20,11 +20,13 @@ app.get('/api/movies', async (req, res) => {
             MOVIEID: row[0],
             MOVIENAME: row[1],
             DIRECTOR: row[2],
-            Description: row[3],
+            DESCRIPTION: row[3],
             AVERAGERATING: row[4],
             RUNTIME: row[5],
             RELEASEDATE: row[6],
-            GENRE: row[7]
+            GENRE: row[7],
+            MOVIEFILE: row[8],
+            IMAGEFILE: row[9]
         };
       }));
   } catch (err) {

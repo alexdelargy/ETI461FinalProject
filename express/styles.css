@@ -172,6 +172,19 @@
         gap: 10px;
         padding: 20px;
     }
+    .gallery-movies {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+        padding: 20px;
+    }
+
+    .gallery-home-movies {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+        padding: 20px;
+    }
 
     .gallery-home {
         display: grid;
