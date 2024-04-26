@@ -14,7 +14,7 @@ app.get('/api/movies', async (req, res) => {
   let connection;
   try {
       connection = await oracledb.getConnection(dbConfig);
-      const result = await connection.execute(`SELECT * FROM Movies`); // Adjust SQL as needed
+      const result = await connection.execute(`SELECT * FROM Movies`); 
       res.json(result.rows.map(row => {
         return {
             MOVIEID: row[0],
