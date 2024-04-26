@@ -10,6 +10,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Final Project: Lulu</title>
         <link rel="stylesheet" href="styles.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $.ajax({
+                    url: '/api/movies',
+                    type: 'GET',
+                    success: function(movies) {
+                        movies.forEach(movie => {
+                            if (movie.MOVIEID == 6) {
+                                $('.info-title').append(`
+                                    <div class="info-text">
+                                        <p><strong>Title:</strong> ${movie.MOVIENAME}</p>
+                                        <p><strong>Description:</strong> ${movie.DESCRIPTION}</p>
+                                        <p><strong>Runtime:</strong> ${movie.RUNTIME} minutes</p>
+                                        <p><strong>Genre:</strong> ${movie.GENRE}</p>
+                                        <p><strong>Director:</strong> ${movie.DIRECTOR}</p>
+                                    </div>`);
+                            }
+                        });
+                    },
+                    error: function() {
+                        $('.info-container').append('<p>Error loading movies.</p>');
+                    }
+                });
+            });
+            </script>
+        
     </head>
 
 <!-- BODY -->
@@ -76,22 +104,9 @@
 <!-- Info -->
 <div class="info-container">
     <img src="images/movies/back-to-the-future.jpg" alt="Example Image" class="info-image">
+        <h2 class='info-title'>Back to the Future</h2>
 </div>
 
-<div class="new-container"></div>
-            <h1>Back to the Future</h1>
-            <hr>
-            <h2>Description</h2>
-            <p>Marty McFly, a 17-year-old high school student, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown.</p>
-            <hr>
-            <h2>RunTime</h2>
-            <p> 1h 56min</p>
-            <hr>
-            <h2>Genre</h2>
-            <p>Adventure, Comedy, Sci-Fi</p>
-            <hr>
-            <h2>Director</h2>
-            <p>Robert Zemeckis</p>
-    </div>
+
 
 </body>
